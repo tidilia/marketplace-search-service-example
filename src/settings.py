@@ -8,7 +8,7 @@ class Settings(BaseSettings):
         default="localhost:9092",
         validation_alias="KAFKA_BROKERS",
     )
-    
+
     kafka_topic_ads: str = Field(
         default="ads",
         validation_alias="KAFKA_TOPIC_ADS",

@@ -32,6 +32,7 @@ async def main() -> None:
         auto_offset_reset="earliest",
     )
     await consumer.start()
+    print("Kafka consumer started")
 
     async with httpx.AsyncClient(timeout=5.0) as client:
         ad_source = AdServiceAdSource(client, settings.ad_service_url)
@@ -42,6 +43,7 @@ async def main() -> None:
             remove_ad=RemoveAd(uow),
         )
         try:
+            print("Kafka consumer is running...")
             await ads_consumer.run()
         finally:
             await consumer.stop()

@@ -29,6 +29,7 @@ class KafkaAdsConsumer:
             await self._consumer.commit()
 
     async def _handle(self, value: dict[str, typing.Any]) -> None:
+        logger.info("received message: %s", value)
         event = value.get("event")
         payload = value.get("payload") or {}
         ad_id = payload.get("ad_id")
