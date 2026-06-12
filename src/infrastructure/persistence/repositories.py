@@ -43,8 +43,8 @@ class SQLAlchemySearchRepository(SearchRepository):
             },
         )
         await self._session.execute(stmt)
+        print(f"Upserted ad {ad_id} into search index")
 
-        await self._session.execute(stmt)
 
     async def delete(self, ad_id: int) -> None:
         stmt = delete(SearchIndexModel).where(SearchIndexModel.ad_id == ad_id)

@@ -10,6 +10,7 @@ class IndexAd(IndexAdPort):
 
     async def execute(self, ad_id: int) -> None:
         ad = await self._ad_source.get(ad_id)
+        print(ad)
 
         async with self._uow:
             if ad is None or ad.status != "active":
@@ -23,4 +24,5 @@ class IndexAd(IndexAdPort):
                     category=ad.category,
                     city=ad.city,
                 )
+                print(f"Indexed ad {ad_id}")
             await self._uow.commit()
