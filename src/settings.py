@@ -14,7 +14,10 @@ class Settings(BaseSettings):
         validation_alias="KAFKA_TOPIC_ADS",
     )
     kafka_consumer_group: str = "search-service"
-    ad_service_url: str = "http://localhost:8002"
+    ad_service_url: str = Field(
+        default="http://localhost:8002",
+        validation_alias="AD_SERVICE_URL",
+    )
 
     database_url: str = Field(
         default="postgresql+asyncpg://postgres:postgres@localhost:5435/search_db",
